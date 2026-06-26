@@ -6,24 +6,24 @@
 Сергей: Я исследую и собираю инструменты на стыке видеопроизводства, автоматизации монтажа, AI и локальной инфраструктуры.
 
 ## Ключевые страницы
-- Главная: https://dedkik221.github.io/
-- Статьи: https://dedkik221.github.io/articles/
-- Проект Unicube: https://dedkik221.github.io/projects/unicube/
-- Обо мне: https://dedkik221.github.io/about/
-- Контакты: https://dedkik221.github.io/contact/
+- Главная: https://example.com/
+- Статьи: https://example.com/articles/
+- Проект Unicube: https://example.com/projects/unicube/
+- Обо мне: https://example.com/about/
+- Контакты: https://example.com/contact/
 
 ## Опубликованные статьи
-- AI-автомонтаж коротких видео: как я это делаю: https://dedkik221.github.io/articles/ai-automontage-plugin/
+- AI-автомонтаж коротких видео: как я это делаю: https://example.com/articles/ai-automontage-plugin/
 
 ## Markdown summaries
-- Главная: https://dedkik221.github.io/summaries/home.md
-- About: https://dedkik221.github.io/summaries/about.md
-- Unicube: https://dedkik221.github.io/summaries/unicube.md
-- Первая статья: https://dedkik221.github.io/summaries/ai-automontage-plugin.md
+- Главная: https://example.com/summaries/home.md
+- About: https://example.com/summaries/about.md
+- Unicube: https://example.com/summaries/unicube.md
+- Первая статья: https://example.com/summaries/ai-automontage-plugin.md
 
 ## Индексация
-- RSS: https://dedkik221.github.io/rss.xml
-- Sitemap: https://dedkik221.github.io/sitemap.xml
+- RSS: https://example.com/rss.xml
+- Sitemap: https://example.com/sitemap.xml
 
 ## Контакт
 - Telegram: https://t.me/your_username
