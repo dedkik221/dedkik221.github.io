@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://dedkik221.github.io/sitemap-index.xml
