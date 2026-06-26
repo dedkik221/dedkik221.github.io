@@ -1,0 +1,30 @@
+# Сергей: видео, AI-автомонтаж и self-hosted workflow
+
+Личный технический блог о видео, автоматизации монтажа, AI-инструментах, Premiere/DaVinci и self-hosted процессах.
+
+## Автор
+Сергей: Я исследую и собираю инструменты на стыке видеопроизводства, автоматизации монтажа, AI и локальной инфраструктуры.
+
+## Ключевые страницы
+- Главная: https://dedkik221.github.io/
+- Статьи: https://dedkik221.github.io/articles/
+- Проект Unicube: https://dedkik221.github.io/projects/unicube/
+- Обо мне: https://dedkik221.github.io/about/
+- Контакты: https://dedkik221.github.io/contact/
+
+## Опубликованные статьи
+- AI-автомонтаж коротких видео: как я это делаю: https://dedkik221.github.io/articles/ai-automontage-plugin/
+
+## Markdown summaries
+- Главная: https://dedkik221.github.io/summaries/home.md
+- About: https://dedkik221.github.io/summaries/about.md
+- Unicube: https://dedkik221.github.io/summaries/unicube.md
+- Первая статья: https://dedkik221.github.io/summaries/ai-automontage-plugin.md
+
+## Индексация
+- RSS: https://dedkik221.github.io/rss.xml
+- Sitemap: https://dedkik221.github.io/sitemap.xml
+
+## Контакт
+- Telegram: https://t.me/your_username
+- Email: hello@example.com
