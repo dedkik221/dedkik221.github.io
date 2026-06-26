@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.0.3"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><title>AI-автомонтаж коротких видео: как я это делаю | Devlog Сергея</title><meta name="description" content="Первая большая заметка о моём подходе к AI-автомонтажу: что можно автоматизировать, где нужны проверки и как выглядит pipeline на верхнем уровне."><link rel="canonical" href="https://dedkik221.github.io/articles/ai-automontage-plugin/"><meta name="robots" content="index, follow"><meta property="og:locale" content="ru_RU"><meta property="og:site_name" content="Сергей: видео, AI-автомонтаж и self-hosted workflow"><meta property="og:type" content="article"><meta property="og:title" content="AI-автомонтаж коротких видео: как я это делаю | Devlog Сергея"><meta property="og:description" content="Первая большая заметка о моём подходе к AI-автомонтажу: что можно автоматизировать, где нужны проверки и как выглядит pipeline на верхнем уровне."><meta property="og:url" content="https://dedkik221.github.io/articles/ai-automontage-plugin/"><meta property="og:image" content="https://dedkik221.github.io/images/og-default.svg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AI-автомонтаж коротких видео: как я это делаю | Devlog Сергея"><meta name="twitter:description" content="Первая большая заметка о моём подходе к AI-автомонтажу: что можно автоматизировать, где нужны проверки и как выглядит pipeline на верхнем уровне."><meta name="twitter:image" content="https://dedkik221.github.io/images/og-default.svg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI-автомонтаж коротких видео: как я это делаю","description":"Первая большая заметка о моём подходе к AI-автомонтажу: что можно автоматизировать, где нужны проверки и как выглядит pipeline на верхнем уровне.","datePublished":"2026-06-26T00:00:00.000Z","dateModified":"2026-06-26T00:00:00.000Z","mainEntityOfPage":"https://dedkik221.github.io/articles/ai-automontage-plugin/","url":"https://dedkik221.github.io/articles/ai-automontage-plugin/","inLanguage":"ru-RU","keywords":"AI, видео, монтаж, automation, Premiere Pro, devlog","author":{"@type":"Person","name":"Сергей","url":"https://dedkik221.github.io"},"publisher":{"@type":"Person","name":"Сергей"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://dedkik221.github.io/"},{"@type":"ListItem","position":2,"name":"Статьи","item":"https://dedkik221.github.io/articles/"},{"@type":"ListItem","position":3,"name":"AI-автомонтаж коротких видео: как я это делаю","item":"https://dedkik221.github.io/articles/ai-automontage-plugin/"}]}</script><link rel="stylesheet" href="/_astro/seo.Bn_b38nS.css"></head><body><a class="skip-link" href="#content">К содержанию</a><header class="site-header" data-pagefind-ignore><div class="shell header-inner"><a class="brand" href="/" aria-label="На главную"><span class="brand-mark">С</span><span><strong>Devlog Сергея</strong></span></a><nav class="nav" aria-label="Главная навигация"><a href="/">Главная</a><a href="/articles/" aria-current="page">Статьи</a><a href="/projects/">Проекты</a><a href="/about/">Обо мне</a><a href="/contact/">Контакты</a></nav><div class="header-actions" aria-label="Быстрые ссылки"><a href="https://github.com/your_username" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.48.09.65-.2.65-.46v-1.7c-2.64.57-3.2-1.12-3.2-1.12-.43-1.1-1.05-1.39-1.05-1.39-.86-.59.07-.58.07-.58.95.07 1.45.98 1.45.98.85 1.44 2.22 1.03 2.76.78.09-.62.33-1.03.6-1.27-2.1-.24-4.31-1.05-4.31-4.68 0-1.03.37-1.88.98-2.54-.1-.24-.42-1.2.09-2.5 0 0 .79-.25 2.6.97a8.9 8.9 0 0 1 4.73 0c1.8-1.22 2.6-.97 2.6-.97.5 1.3.18 2.26.09 2.5.61.66.98 1.5.98 2.54 0 3.64-2.22 4.44-4.33 4.67.34.3.64.88.64 1.77v2.64c0 .26.17.56.66.46A9.5 9.5 0 0 0 12 2.5Z"></path></svg></a><a href="https://t.me/your_username" aria-label="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.55 4.4 3.9 10.83c-1.14.46-1.13 1.1-.2 1.38l4.27 1.33 1.63 5c.2.56.1.78.68.78.44 0 .64-.2.9-.45l2.16-2.1 4.5 3.33c.83.46 1.42.22 1.63-.77L22.4 5.54c.3-1.2-.46-1.75-1.85-1.14Zm-11.9 8.83 9.75-6.15c.49-.3.93-.14.57.18l-8.34 7.52-.33 3.49-1.65-5.04Z"></path></svg></a><button class="theme-toggle" type="button" aria-label="Переключить тему" data-theme-toggle><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12Zm0-1.6a4.4 4.4 0 1 0 0-8.8 4.4 4.4 0 0 0 0 8.8ZM11.2 2h1.6v2.7h-1.6V2Zm0 17.3h1.6V22h-1.6v-2.7ZM2 11.2h2.7v1.6H2v-1.6Zm17.3 0H22v1.6h-2.7v-1.6ZM4.22 5.35l1.13-1.13 1.9 1.9-1.13 1.13-1.9-1.9Zm12.53 12.53 1.13-1.13 1.9 1.9-1.13 1.13-1.9-1.9Zm0-11.76 1.9-1.9 1.13 1.13-1.9 1.9-1.13-1.13ZM4.22 18.65l1.9-1.9 1.13 1.13-1.9 1.9-1.13-1.13Z"></path></svg></button></div></div></header><script>
+  const storedTheme = localStorage.getItem('theme');
+  if (storedTheme === 'dark') document.documentElement.dataset.theme = 'dark';
+
+  document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nextTheme === 'dark' ? 'dark' : '';
+    localStorage.setItem('theme', nextTheme);
+  });
+</script><main id="content" class="site-main"><div class="article-shell shell"><aside class="author-sidebar" data-pagefind-ignore><div class="author-card"><div class="author-avatar" aria-hidden="true">С</div><div><p class="author-kicker">Автор</p><h2>Сергей</h2><p>Разрабатываю продукты и инструменты, автоматизирую контент-процессы и делюсь опытом в блоге.</p></div></div><nav class="sidebar-links" aria-label="Ссылки автора"><a href="/about/">Обо мне</a><a href="/projects/">Проекты</a><a href="https://github.com/your_username">GitHub</a><a href="https://t.me/your_username">Telegram</a></nav><section class="sidebar-section"><h3>Последние статьи</h3><ol class="latest-list"><li><a href="/articles/ai-automontage-plugin/">AI-автомонтаж коротких видео: как я это делаю</a></li></ol></section><section class="sidebar-section subscribe-box"><h3>Подписка</h3><p>Редкие заметки о видео, автоматизации и AI-инструментах.</p><form><input type="email" name="email" placeholder="email@example.com" autocomplete="email"><button type="button">Скоро</button></form></section><p class="sidebar-copy">© 2026 Сергей</p></aside><article class="article-main" data-pagefind-body><header class="article-header"><div class="article-meta"><time datetime="2026-06-26T00:00:00.000Z">26 июня 2026 г.</time><span>5 мин чтения</span><span>AI, видео, монтаж, automation</span></div><h1>AI-автомонтаж коротких видео: как я это делаю</h1><p>Первая большая заметка о моём подходе к AI-автомонтажу: что можно автоматизировать, где нужны проверки и как выглядит pipeline на верхнем уровне.</p></header><div class="prose article-content"><h2 id="зачем-я-это-делаю">Зачем я это делаю</h2>
+<p>В разговорных видео много работы, которая выглядит творческой только снаружи. На практике монтажёр снова и снова проходит одни и те же шаги: слушает дубли, ищет паузы, отмечает сильные фразы, убирает явные провалы, собирает первый черновик и только потом начинает нормальную редакторскую работу.</p>
+<p>Я хочу ускорить именно этот первый слой. Не заменить монтажёра, не обещать “одной кнопкой готовый ролик”, а быстрее получать рабочий rough cut, в котором уже есть структура и список мест для ручной проверки.</p>
+<h2 id="какую-проблему-решаю">Какую проблему решаю</h2>
+<p>Первый фокус — разговорные материалы:</p>
+<ul>
+<li>лекции и обучающие видео;</li>
+<li>Reels/Shorts из длинной записи;</li>
+<li>подкасты и интервью;</li>
+<li>мультикамера;</li>
+<li>записи прямых эфиров;</li>
+<li>материалы, где оператор или ведущий оставляет голосовые метки.</li>
+</ul>
+<p>В таких задачах важны не только красивые склейки. Важнее, чтобы инструмент не терял смысл, не выбрасывал нужные фразы молча и показывал, где его уверенность слабая.</p>
+<h2 id="почему-это-можно-автоматизировать-частично">Почему это можно автоматизировать частично</h2>
+<p>Черновой монтаж часто опирается на повторяемые сигналы:</p>
+<ul>
+<li>где человек говорит, а где молчит;</li>
+<li>где фраза повторяется как дубль;</li>
+<li>где есть длинная пауза, дыхание, щелчок или filler;</li>
+<li>какая фраза выбрана для итогового ролика;</li>
+<li>какой кусок исходника лежит под этим местом таймлайна.</li>
+</ul>
+<p>Если эти данные привести к понятной форме, появляется не “магия AI”, а обычный инженерный процесс: входные файлы, таблицы, правила, план монтажа и экспорт.</p>
+<h2 id="pipeline-на-верхнем-уровне">Pipeline на верхнем уровне</h2>
+<p>Текущая логика выглядит так:</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>исходники / timeline</span></span>
+<span class="line"><span>-> транскрипт и SRT</span></span>
+<span class="line"><span>-> аудиоанализ: речь, паузы, громкость, события</span></span>
+<span class="line"><span>-> выбранные фразы или сценарий</span></span>
+<span class="line"><span>-> matching: где это находится на таймлайне</span></span>
+<span class="line"><span>-> EditPlan: что взять, где нужна проверка</span></span>
+<span class="line"><span>-> экспорт в FCPXML / маркеры / монтажную программу</span></span></code></pre>
+<p>Для DaVinci и похожих сценариев удобна связка SRT + FCPXML. SRT отвечает на вопрос “где сказана фраза”, а FCPXML помогает понять, какой исходный клип лежит под этим местом таймлайна. После этого можно собрать новый rough cut и импортировать его обратно.</p>
+<p>Для Premiere направление другое: панель внутри программы должна брать выделенный клип или секвенцию, отправлять задачу локальному анализатору и возвращать маркеры прямо в текущий проект.</p>
+<h2 id="анализ-материала">Анализ материала</h2>
+<p>В основе лежит несколько слоёв:</p>
+<ul>
+<li>транскрипт и таймкоды слов;</li>
+<li>VAD для грубой карты речи и тишины;</li>
+<li>RMS/peak для громкости;</li>
+<li>более точный аудиоанализ для пауз, дыханий, щелчков и остатков речи;</li>
+<li>таблицы и HTML-отчёты, которые можно открыть глазами.</li>
+</ul>
+<p>Отдельная идея Audio Atlas — сделать единый слой аудиоразметки с точностью, достаточной для монтажа. Если граница речи плавает на 7-25 кадров, автонарезка будет раздражать даже при хорошей идее. Поэтому сначала нужно научиться честно видеть аудио.</p>
+<h2 id="принятие-решений">Принятие решений</h2>
+<p>Я не хочу, чтобы инструмент молча удалял сомнительные куски. Правильнее разделять:</p>
+<ul>
+<li>уверенные совпадения;</li>
+<li>места, где нужен review;</li>
+<li>фразы, которые не нашлись;</li>
+<li>подозрительно короткие или длинные фрагменты;</li>
+<li>дубли, где нужно выбрать последний или лучший вариант.</li>
+</ul>
+<p>Такой подход медленнее выглядит на бумаге, зато даёт контроль. Монтажёр видит, почему получился именно такой черновик, и может быстро пройти только спорные места.</p>
+<h2 id="editplan">EditPlan</h2>
+<p>EditPlan — это промежуточный слой между анализом и монтажной программой. В нём должны быть не абстрактные советы, а конкретные интервалы:</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>clip_id</span></span>
+<span class="line"><span>source_path</span></span>
+<span class="line"><span>source_in</span></span>
+<span class="line"><span>source_out</span></span>
+<span class="line"><span>timeline_in</span></span>
+<span class="line"><span>timeline_out</span></span>
+<span class="line"><span>reason</span></span>
+<span class="line"><span>confidence</span></span>
+<span class="line"><span>review_flags</span></span></code></pre>
+<p>Такой план можно превратить в FCPXML, маркеры Premiere, CSV для проверки или HTML-отчёт. Это полезнее, чем сразу пытаться “нажать кнопку и получить финальный ролик”.</p>
+<h2 id="premiere-плагин">Premiere-плагин</h2>
+<p>Для Premiere я смотрю в сторону UXP-панели: пользователь выделяет клип или секвенцию, запускает анализ, а панель создаёт маркеры речи, пауз и потенциальных резов. Тяжёлый анализ при этом лучше держать снаружи — в локальном helper-процессе или через файловый мост.</p>
+<p>Первый полезный результат внутри Premiere — не автоматический ripple delete, а понятные маркеры. Если они стабильны, дальше можно добавлять полуавтоматические действия.</p>
+<figure class="architecture-diagram" aria-labelledby="architecture-diagram-title"><figcaption id="architecture-diagram-title">Архитектура сервиса на верхнем уровне</figcaption><div class="diagram-flow" aria-label="Поток обработки видео"><div class="diagram-node source"><span>Пользователь</span><strong>Telegram</strong></div><div class="diagram-arrow" aria-hidden="true">→</div><div class="diagram-node"><span>Приём</span><strong>Загрузка файлов</strong></div><div class="diagram-arrow" aria-hidden="true">→</div><div class="diagram-node process"><span>Обработка</span><ol><li>Аудио</li><li>Распознавание</li><li>Анализ</li><li>Монтаж</li></ol></div><div class="diagram-arrow" aria-hidden="true">→</div><div class="diagram-node"><span>Рендеринг</span><strong>Сборка результата</strong></div><div class="diagram-arrow" aria-hidden="true">→</div><div class="diagram-node result"><span>Выход</span><strong>Готовое видео</strong></div></div><div class="diagram-storage"><span>Временное хранилище</span><i aria-hidden="true"></i><span>исходники / промежуточные файлы / отчёты</span></div></figure>
+<h2 id="telegram-и-сервис-как-отдельная-ветка">Telegram и сервис как отдельная ветка</h2>
+<p>Для коротких Reels/Shorts может появиться более лёгкий сценарий: отправил материал, получил список фрагментов, черновой план и быстрый результат. Это не заменяет монтажный pipeline, но может быть удобным слоем для простых задач.</p>
+<h2 id="ограничения">Ограничения</h2>
+<p>Сейчас я намеренно не обещаю:</p>
+<ul>
+<li>идеальный монтаж без проверки;</li>
+<li>универсальный инструмент для всех жанров;</li>
+<li>понимание смысла лучше человека;</li>
+<li>стабильный результат на грязном звуке без калибровки;</li>
+<li>публичную готовность продукта.</li>
+</ul>
+<p>Главный риск в AI-автомонтаже — звучать убедительно, но резать неточно. Поэтому для меня важнее проверяемость, отчёты и понятные ошибки.</p>
+<h2 id="что-дальше">Что дальше</h2>
+<p>Ближайшие шаги:</p>
+<ol>
+<li>Довести MVP rough cut на реальных материалах.</li>
+<li>Отдельно проверить Audio Atlas на паузах, дыханиях и границах речи.</li>
+<li>Сделать аккуратный слой EditPlan.</li>
+<li>Подготовить Premiere-панель с маркерами.</li>
+<li>Собрать обратную связь на конкретных монтажных сценариях.</li>
+</ol>
+<p>Если у вас есть разговорный материал, где черновая нарезка занимает слишком много времени, напишите сценарий. Мне интересны не красивые демо, а реальные случаи, где инструмент либо помогает, либо честно показывает свои ограничения.</p></div><section class="article-cta" data-pagefind-ignore><form class="feedback-form is-compact"><div class="form-intro"><h2>Хочешь протестировать сервис первым?</h2><p>Я собираю список людей, которым интересен такой инструмент. Оставь почту — напишу, когда будет готово.</p></div><div class="form-grid"><label><span>Email</span><input type="email" name="email" placeholder="name@example.com" autocomplete="email"></label><label><span>Роль</span><select name="role"><option value="монтажёр">монтажёр</option><option value="блогер">блогер</option><option value="SMM">SMM</option><option value="предприниматель">предприниматель</option><option value="другое">другое</option></select></label></div><label><span>Какой контент монтируете</span><input name="content_type" placeholder="лекции, Reels, подкасты, эфиры..."></label><label><span>Что занимает больше всего времени</span><textarea name="main_pain" rows="4" placeholder="черновая нарезка, дубли, паузы, субтитры..."></textarea></label><label class="check-row"><input type="checkbox" name="early_access" value="yes"><span>Хочу протестировать раннюю версию</span></label><div class="form-actions"><button type="button" disabled>Endpoint формы задается в конфиге</button><a href="https://t.me/your_username">Написать в Telegram</a></div></form></section><footer class="article-next" data-pagefind-ignore><a href="/projects/unicube/">Проект Unicube</a><a href="/articles/">Все статьи</a></footer></article><aside class="toc" aria-label="Содержание статьи" data-pagefind-ignore><p>Содержание</p><ol><li class="depth-2"><a href="#зачем-я-это-делаю">Зачем я это делаю</a></li><li class="depth-2"><a href="#какую-проблему-решаю">Какую проблему решаю</a></li><li class="depth-2"><a href="#почему-это-можно-автоматизировать-частично">Почему это можно автоматизировать частично</a></li><li class="depth-2"><a href="#pipeline-на-верхнем-уровне">Pipeline на верхнем уровне</a></li><li class="depth-2"><a href="#анализ-материала">Анализ материала</a></li><li class="depth-2"><a href="#принятие-решений">Принятие решений</a></li><li class="depth-2"><a href="#editplan">EditPlan</a></li><li class="depth-2"><a href="#premiere-плагин">Premiere-плагин</a></li><li class="depth-2"><a href="#telegram-и-сервис-как-отдельная-ветка">Telegram и сервис как отдельная ветка</a></li><li class="depth-2"><a href="#ограничения">Ограничения</a></li><li class="depth-2"><a href="#что-дальше">Что дальше</a></li></ol></aside></div></main><footer class="site-footer" data-pagefind-ignore><div class="shell footer-grid"><div><p class="eyebrow">Личный технический блог</p><p>Видео, автоматизация монтажа, AI-инструменты и локальная инфраструктура. Без громких обещаний, с инженерными заметками по мере сборки.</p></div><div class="footer-links"><a href="/rss.xml">RSS</a><a href="/llms.txt">llms.txt</a><a href="/sitemap.xml">sitemap</a><a href="https://t.me/your_username">Telegram</a></div></div></footer></body></html>
