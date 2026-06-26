@@ -13,7 +13,7 @@
 - Контакты: https://example.com/contact/
 
 ## Опубликованные статьи
-- AI-автомонтаж коротких видео: как я это делаю: https://example.com/articles/ai-automontage-plugin/
+- AutoCut для Adobe Premiere: как я это делаю: https://example.com/articles/ai-automontage-plugin/
 
 ## Markdown summaries
 - Главная: https://example.com/summaries/home.md
